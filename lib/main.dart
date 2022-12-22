@@ -83,7 +83,7 @@ class _LauncherPageState extends State<LauncherPage> {
               height: 100,
               child: ElevatedButton(
                 onPressed: launch,
-                child: const Text("게임 실행",
+                child: Text(_test,
                     style: TextStyle(
                         fontFamily: 'NotoSansKR',
                         fontSize: 50,
