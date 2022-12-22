@@ -46,14 +46,36 @@ class LauncherPage extends StatefulWidget {
 class _LauncherPageState extends State<LauncherPage> {
 
   String _test = "";
+  Future<void> showMessageBox(BuildContext ctx, String title,
+      List<String> contents, void Function() onPressed) async {
+    return showDialog<void>(
+        context: ctx,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: contents
+                    .map((e) => Center(
+                  child: Text(e),
+                ))
+                    .toList(),
+              ),
+            ),
+            actions: <Widget>[
+              OutlinedButton(onPressed: onPressed, child: const Text("네"))
+            ],
+          );
+        });
+  }
+
   void launch() async {
     String executable = "\"runtime\\windows\\bin\\java.exe\"";
     if (Platform.isMacOS) {
       executable = "./runtime/macosx/bin/java";
     }
-    setState(() {
-      _test = Directory.current.path;
-    });
+    await showMessageBox(context, "test", [Directory.current.path], () { });
     /*
     String script =
         "$executable -jar ${Directory.current.path}\\app\\desktop-1.0.jar";
