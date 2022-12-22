@@ -44,16 +44,28 @@ class LauncherPage extends StatefulWidget {
 }
 
 class _LauncherPageState extends State<LauncherPage> {
+
+  String _test = "";
   void launch() async {
     String executable = "\"runtime\\windows\\bin\\java.exe\"";
     if (Platform.isMacOS) {
       executable = "./runtime/macosx/bin/java";
     }
+    setState(() {
+      _test = Directory.current.path;
+    });
     String script =
         "$executable -jar ${Directory.current.path}\\app\\desktop-1.0.jar";
     await Shell().run(script, onProcess: (process) {
       exit(1);
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
   }
 
   @override
