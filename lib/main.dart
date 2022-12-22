@@ -54,11 +54,14 @@ class _LauncherPageState extends State<LauncherPage> {
     setState(() {
       _test = Directory.current.path;
     });
+    /*
     String script =
         "$executable -jar ${Directory.current.path}\\app\\desktop-1.0.jar";
     await Shell().run(script, onProcess: (process) {
       exit(1);
     });
+
+     */
   }
 
   @override
